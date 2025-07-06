@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unsere Hochzeit</title>
+  <style>
+    
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fcfcfc;
+      color: #333;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 18px; /* Basis-Schriftgröße für große Bildschirme */
+    }
+    
+    /* Header + Hamburger */
+    header {
+      background: linear-gradient(135deg, #183216, #8fd041);
+      color: white;
+      height: 140px;
+      padding: 1rem;
+      position: relative;
+      display: flex;
+      justify-content: center; /* zentriert .header-text horizontal */
+      align-items: center;     /* zentriert .header-text vertikal */
+      text-align: center;
+    }
+
+    
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+      color: white;
+
+    }
+
+    .highlight {
+      font-weight: bold;
+      color: #fcfcfc;
+    }
+
+    .bold-text {
+      font-weight: bold;
+    }
+
+    img {
+        width: 100%;
+        max-width: 500px;
+        display: block;
+        margin: 1.5rem auto;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        transition: transform 0.4s ease;
+      }
+    img:hover {
+      transform: scale(1.03);
+    }
+    
+    .menu-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+
+      width: 70px;
+      height: 70px;
+      cursor: pointer;
+
+      background-color: #32760f; /* #9e3783 mit 85% Deckkraft */
+      border-radius: 50%; /* runder Kreis */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Schattierung bleibt */
+      transition: background-color 0.3s ease;
+    }
+
+    .menu-toggle div {
+      width: 30px;
+      height: 3px;
+      background-color: white;
+      border-radius: 1.5px; /* abgerundete Linienenden */
+      transition: transform 0.3s ease;
+    }
+
+    .menu-toggle:hover div {
+      background-color: #f9f9f9;
+    }
+    
+    .zentrierter-satz {
+      text-align: center;
+      margin: 2rem auto;
+      font-size: 1.2rem;
+    }
+    
+    nav {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 1.5rem;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 100;
+    }
+
+    nav a {
+      padding: 1rem;
+      text-decoration: none;
+      color: #32760f;
+      border-bottom: 1px solid #eee;
+    }
+
+    nav a:last-child {
+      border-bottom: none;
+    }
+
+    nav.show {
+      display: flex;
+    }
+
+    main {
+      padding: 2rem 1.5rem;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    
+    h2 {
+      color: #32760f;
+      border-bottom: 2px solid #8fd041;
+      padding-bottom: 0.3rem;
+      margin-top: 2.5rem;
+    }
+
+    .section {
+      margin-bottom: 2rem;
+    }
+    
+    
+
+    .ablauf-liste {
+      list-style-position: outside;  /* Bullet bleibt außen */
+      padding-left: 2em;             /* Platz für Bullet */
+    }
+
+    .ablauf-liste li {
+      text-indent: -2em;             /* Erste Zeile zurückrücken */
+      padding-left: 4em;             /* Platz für Uhrzeit & Bindestrich */
+      line-height: 1.5;
+    }
+
+  
+    
+    
+    .map-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .map-embed {
+      flex: 1 1 300px;
+      max-width: 600px;
+      height: 350px;
+      min-width: 250px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .map-text {
+      flex: 1 1 250px;
+      max-width: 400px;
+    }
+    
+
+    .eintrag {
+      display: grid;
+      grid-template-columns: 130px auto; /* feste Breite für Name */
+      align-items: center;
+      gap: 0rem;
+      margin: 0.2rem;
+      
+    }
+    
+    
+
+
+    @media (max-width: 700px) {
+      .map-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      
+      
+      
+      .map-text {
+        max-width: 90%;
+      }
+      
+      nav {
+        top: 70px;
+      }
+    }
+    
+    
+
+    @media (max-width: 1024px) {
+      html {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      html {
+        font-size: 15px;
+      }
+      .eintrag {
+        grid-template-columns: 100px auto; 
+      }
+    }
+
+    @media (max-width: 480px) {
+      html {
+        font-size: 14px;
+      }
+    }
+    
+    
+    @media (max-width: 300px) {
+    
+      .eintrag {
+        grid-template-columns: 1fr;
+        text-align: left;
+      }
+    
+      .nummer{
+        margin-bottom: 1rem;
+        margin-top: 0;
+      }
+      .name{
+        margin-bottom: 0;
+        margin-top: 0;
+      }
+      
+    }
+    
+    
+
+    
+      
+  </style>
+</head>
+  
+  
+  
+  
+  
+<body>
+
+<header>
+  <div class="header-text">
+    <h1>Wir heiraten!</h1>
+    <p><strong>Marlene & Jonathan</strong></p>
+    <p class="highlight">17. Oktober 2025 – München</p>
+  </div>
+
+  <div class="menu-toggle" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <nav id="mainMenu">
+    <!-- <a href="index.html">Startseite</a> -->
+    <a href="Verkoestigung.html">Verköstigung</a>
+    <a href="hotelinfo.html">Infos Hotel</a>
+    <a href="gedicht.html">Gedicht</a>
+    <a href="Galerie.html">Galerie</a>
+  </nav>
+</header>
+
+  <main>
+    <div class="section">
+      <h2>Willkommen!</h2>
+      
+      <p>
+      Wir haben hier die wichtigsten Infos zusammengestellt und bitten dich, diese aufmerksam durchzulesen.
+      
+      Wir zählen auf dich, denn an ein paar Stellen wird es auf ein gutes Miteinander und ein wenig Eigenverantwortung ankommen. 
+      Keine Sorge: Es klingt ernster, als es ist – Hauptsache, alle wissen Bescheid. Danke, dass du dir die Zeit nimmst. 
+      </p>
+      
+      <p class="zentrierter-satz">
+      🧡 Wir freuen uns riesig auf dich! 🧡 
+      </p>
+      
+    </div>
+   
+    <img src="SAVE_THE_DATE_FINAL_ohneText.png" alt="Anna und Ben lachen" />
+    
+    <h2>Ablauf</h2>
+    <ul>
+      <li><strong>14:30 Uhr</strong> – Treffpunkt vor Standesamt am Fischbrunnen auf dem Marienplatz </li>
+      <li><strong>15:00 Uhr</strong> – Trauung im kleinen Festsaal des neuen Rathaus</li>
+      <li><strong>15:35 Uhr</strong> – Foto der gesamten Festgesellschaft im Trausaal</li>
+      <li><strong>15:45 Uhr</strong> – Gruppenaufnahmen mit Fotografin im Innenhof</li>  
+    </ul>
+    <ul>
+      <li><strong>15:45 Uhr</strong> – Freies Zeitfenster für Locationwechsel / Einchecken im Hotel</li>
+    </ul>
+    <ul>
+      <li><strong>17:30 Uhr</strong> – Sektempfang beim Palmenhaus</li>
+      <li><strong>19:00 Uhr</strong> – Eröffnung des Buffets</li>
+      
+      <li><strong>21:00 Uhr</strong> – Programmbeiträge</li>
+      <li><strong>22:00 Uhr</strong> – Eröffnungstanz</li>
+      <li><strong>02:00 Uhr</strong> – Ende der Feier</li>
+    </ul>
+    
+  
+    
+    
+    <h2>Standesamt: Adresse & Anfahrt</h2>
+    <p>Der Marienplatz im Herzen von München – zentral gelegen und perfekt erreichbar. Hier startet unser großer Tag!</p>
+    
+  
+    <section class="map-container">
+    <div class="map-embed">
+      <iframe width="425" height="350" src="https://www.openstreetmap.org/export/embed.html?bbox=11.5737184882164%2C48.136598373322585%2C11.577167809009554%2C48.13775827433088&amp;layer=mapnik&marker=48.1373%2C11.5760" style="border: 1px solid black" title="KarteMarienplatz"
+      allowfullscreen
+      ></iframe>
+      
+    </div>
+
+    <div class="map-text">
+      <h1>Hier heiraten wir!</h1>
+      <p>Neues Rathaus<br/>Marienplatz 8<br/>80331 München</p>
+      
+      <p class=bold-text>Treffpunkt um 14:45 Uhr</p>
+      
+      <p>Bitte beachte unserere <a href="#anfahrtcomments">Anmerkungen zur Anfahrt</a>. <br/>Das Verstreuen von Blumen, Reis oder Konfetti ist bei dieser Location nicht erwünscht. <br/> <br/></p>
+      
+      
+        <small style="display: block; text-align: center; margin-top: 1rem;">
+          <a href="https://www.openstreetmap.org/?    mlat=48.1374&mlon=11.5755#map=17/48.1374/11.5755" target="_blank">
+            Größere Karte in OpenStreetMap öffnen
+          </a>
+      </small>
+    </div>
+  </section>
+
+  
+    
+    
+    
+    
+    <h2>Palmenhaus: Adresse & Anfahrt</h2>
+    <p>Im Palmenhaus ist es 365 Tage im Jahr grün und daher auch im Oktober zuverlässig nach unserem Geschmack! </p>
+    <section class="map-container">
+    <div class="map-embed">
+      <iframe width="425" height="350" src="https://www.openstreetmap.org/export/embed.html?bbox=11.42106056213379%2C48.192254560777144%2C11.42608165740967%2C48.19457182077332&amp;layer=mapnik&marker=48.1936%2C11.4230" style="border: 1px solid black" title="KartePalmenhaus"
+      allowfullscreen
+      ></iframe>
+      
+    </div>
+
+    <div class="map-text">
+      <h1>Hier feiern wir!</h1>
+      <p>Gärtnerei Franz Korkisch<br/>Goteboldstraße 154<br/>81249 München</p>
+      
+      <p class=bold-text>Treffpunkt um 17:30 Uhr</p>
+      
+      <p>Parkplätze sind vorhanden. Die Location ist barrierefrei. <br/> Das Verstreuen von Reis oder Konfetti ist bei dieser Location nicht erwünscht.<br/> <br/></p>
+      
+      
+        <small style="display: block; text-align: center; margin-top: 1rem;">
+          
+          
+          
+          <a href="https://www.openstreetmap.org/?    mlat=48.1936&mlon=11.4230#map=17/48.1936/11.4230" target="_blank">
+            Größere Karte in OpenStreetMap öffnen
+          </a>
+      </small>
+    </div>
+  </section>
+    
+    
+    
+    
+    
+    
+    
+    <h2 id="anfahrtcomments">Anmerkung zur Anfahrt</h2>
+    <p>Das Standesamt liegt zentral am Marienplatz und ist gut mit öffentlichen Verkehrsmitteln erreichbar. Es gibt Parkhäuser in der näheren Umgebung am Max-Josef-Platz (Oper), am Färbergraben (City Parkhaus, Zufart über Sattlerstraße), am Rindermarkt sowie am Hofbräuhaus (Zufahrt über Hochbrückenstraße). Freie Parkplätze können wir dort jedoch leider nicht gewährleisten. Bedenke zudem das hohe Verkehrsaufkommen, die Parkkosten und die Umweltzone in der Innenstadt. <br/>
+
+    Wir empfehlen daher die Anreise per Auto bis zum Parkplatz an der S-Bahn Station Langwied und von dort die Weiterfahrt mit den Öffentlichen.<br/>
+
+    Da die Partylocation nicht optimal an den ÖPNV angebunden ist, bitten wir alle nach Möglichkeit Fahrgemeinschaften zu bilden und freuen uns, wenn Autofahrer Gäste ohne Auto mitnehmen können. Für die übrigen Gäste planen wir zusätzlich einen privaten Shuttleservice und von uns gestellte Taxis ab der S-Bahn Station Langwied.</p>
+    
+    <p>So kommt jeder entspannt ans Ziel!</p>
+
+    
+    <p>
+    Du würdest uns sehr bei der Planung unterstützen, wenn du uns bereits im Vorfeld sagen könntest, ob (und mit wem) du planst, mit dem Auto oder mit den Öffentlichen anzureisen.</p>
+
+    
+    
+    
+    
+    
+    
+    
+    <h2>Anmerkungen zur Abreise</h2>
+    <p>Gäste ohne eigenes Auto können für die Abreise während der Party jederzeit unseren privat organisierten Shuttle-Service nutzen. Dieser fährt euch wieder zurück zur S-Bahn Station Langwied.</p>
+    <p>Bitte stimm dich nach Möglichkeit auch hier in kleinen Gruppen ab, damit wir möglichst effizient fahren können.</p>
+    
+    
+    
+    
+    
+
+    <h2>Dresscode</h2>
+    <p>Elegant & bequem – wir tanzen durch die Nacht! <br/>
+	Bedenke die herbstlichen Temperaturen. Nicht, dass am Ende die Herren frieren und die Damen im Jackette herum laufen. Alle sollen sich wohl fühlen.</p>
+
+    
+    <h2>Geschenkwunsch</h2>
+    <p>Das schönste Geschenk seid ihr!<br/>Wenn du dennoch etwas geben möchtest, kannst du gerne unsere Flitterwochenkasse unterstützen.
+    </p>
+    <p>
+    Bitte beachte, dass wir in der Partylocation einen Tisch für Geschenke vorbereitet haben. Wenn möglich, wäre es für den Ablauf schöner, Geschenke erst dort zu übergeben – und nicht bereits im Standesamt mitzutragen.</p>
+
+    
+    <h2>Programmbeiträge</h2>
+    <p>Du hast eine Idee für eine kleine Einlage oder möchtest eine Rede halten? Grundsätzlich ist der Tag so geplant, dass wir uns damit wohl fühlen. Aber wenn du etwas beitragen möchtest, dass wir nicht verpassen dürfen, dann melde dich gerne bei unseren <a href="#kontakt">Trauzeugen</a>. Sie wissen genau, wie der Ablauf aussieht und ob sich dein Beitrag gut einfügen lässt.</p>
+    
+    
+    
+
+    <h2 id="kontakt">Kontakt</h2>
+    <p>Bei Fragen und Wünschen zu Programmbeiträgen melde dich gerne bei unseren Trauzeugen:</p>
+    <div>
+      <p class="eintrag">
+        <span class="name">📱 Gabriel: </span>
+        <span class="nummer">+4915730470948</span>
+      </p>
+      <p class="eintrag">
+        <span class="name">📱 Milena:</span>
+        <span class="nummer"> +4915228957849</span>
+      </p>
+    </div>
+    
+    
+
+    
+  </main>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('mainMenu').classList.toggle('show');
+    }
+  </script>
+</body>
+</html>
