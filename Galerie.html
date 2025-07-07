@@ -109,18 +109,75 @@
   background-color: #f9f9f9; /* optional: wirkt sauber bei Seitenverhältnis-Unterschieden */
 }
     
+  
+    @media (max-width: 1024px) {
+      html {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      html {
+        font-size: 15px;
+      }
+      .eintrag {
+        grid-template-columns: 100px auto; 
+      }
+      header h1 {
+        font-size: 1.6rem;        
+      }
+    }
     
     @media (max-width: 600px) {
       header h1 {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
       }
       .back-arrow {
         font-size: 1.3rem;
       }
+      .text-box{
+        width: calc(100% - 0rem);  
+      }
     }
+    
+    @media (max-width: 480px) {
+      html {
+        font-size: 12px;
+      }
+      header h1 {
+        font-size: 1.5rem;        
+      }
+      header{
+        font-size: 1.5rem;
+        
+      }
+      
+    }
+    
+    @media (max-width: 360px) {
+      html {
+        font-size: 10px;
+      }
+      header {
+        align-items: right;
+        justify-content: center;
+        padding-right: 2rem;
+        padding-left: 6em;
+        white-space: normal;
+        font-size: 1.5rem;
+      }
+      header h1 {
+        font-size: 1.5rem;        
+      }
+    }
+    
+    
+    
   </style>
 </head>
-<body>
+  
+  
+<body oncontextmenu="return false;">
 
   <header>
     <div class="back-container">
@@ -147,13 +204,13 @@
     
     <section class="foto-galerie">
       <div class="bild-wrapper">
-        <img src="20250704_192447_Bild1.jpg" alt="Beschreibung 1">
+        <img src="20250704_192447_Bild1.webp" alt="Beschreibung 1">
       </div>
       <div class="bild-wrapper">
-        <img src="20250704_193007_Bild2.jpg" alt="Beschreibung 2">
+        <img src="20250704_193007_Bild2.webp" alt="Beschreibung 2">
       </div>
       <div class="bild-wrapper">
-        <img src="20250704_xxxxxx_Bild3.png" alt="Beschreibung 2">
+        <img src="20250704_xxxxxx_Bild3.webp" alt="Beschreibung 2">
       </div>
       <!-- Weitere Bilder -->
     </section>

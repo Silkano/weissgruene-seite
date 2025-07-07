@@ -109,6 +109,22 @@
       font-size: 1.1rem;
     }
     
+    
+    @media (max-width: 1024px) {
+      html {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      html {
+        font-size: 15px;
+      }
+      .eintrag {
+        grid-template-columns: 100px auto; 
+      }
+    }
+    
     @media (max-width: 600px) {
       header h1 {
         font-size: 1.2rem;
@@ -116,10 +132,48 @@
       .back-arrow {
         font-size: 1.3rem;
       }
+      .text-box{
+        width: calc(100% - 0rem);  
+      }
     }
+    
+    @media (max-width: 480px) {
+      html {
+        font-size: 14px;
+      }
+      header h1 {
+        font-size: 1.2rem;        
+      }
+      header{
+        padding-left: 6rem;
+        padding-right: 1rem;
+      }
+      
+    }
+    
+    @media (max-width: 360px) {
+      html {
+        font-size: 12px;
+      }
+      header {
+        align-items: right;
+        justify-content: center;
+        padding-right: 2rem;
+        padding-left: 6em;
+        white-space: normal;
+      }
+      header h1 {
+        font-size: 1.3rem;        
+      }
+    }
+    
+    
   </style>
 </head>
-<body>
+  
+  
+  
+<body oncontextmenu="return false;">
 
   <header>
     <div class="back-container">
